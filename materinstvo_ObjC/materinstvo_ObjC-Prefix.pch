@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'materinstvo_ObjC' target in the 'materinstvo_ObjC' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
