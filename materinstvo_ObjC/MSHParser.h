@@ -14,11 +14,14 @@
 
 @property HTMLNode *bodyNode;
 
-//-(id)initWithData:(NSData*)data;
 +(id)parser;
 
-+(NSString*)parserWithdata;
++(id)parserWithData:(NSData*)data;
 
--(void)parsWithData:(NSData*)data;
+-(NSString*)parsing;
+
+-(id)init;
+
+-(id)initWithData:(NSData*)data;
 
 @end

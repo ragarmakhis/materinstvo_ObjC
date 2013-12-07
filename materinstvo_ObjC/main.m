@@ -24,15 +24,19 @@ int main(int argc, char *argv[])
 //    NSData *data = [html dataUsingEncoding:NSUTF8StringEncoding];
     NSURL *url = [NSURL URLWithString:@"http://materinstvo-shop.ru"];
     NSData *data = [NSData dataWithContentsOfURL:url];
-    MSHParser *parser = [MSHParser parser];
+    MSHParser *parser = [MSHParser parserWithData:data];
 
     
-    NSLog([MSHParser parserWithdata:data]);
+    NSString *string = @"fine";
+    
+    [parser parsing];
+    
+    NSLog(@"%@", string);
 
     
     
-    NSURL *url = [NSURL URLWithString:@"http://materinstvo-shop.ru"];
-    NSData *data = [NSData dataWithContentsOfURL:url];
+//    NSURL *url = [NSURL URLWithString:@"http://materinstvo-shop.ru"];
+//    NSData *data = [NSData dataWithContentsOfURL:url];
 //    NSString *ret = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 //    NSLog(@"ret = %@", ret);
         

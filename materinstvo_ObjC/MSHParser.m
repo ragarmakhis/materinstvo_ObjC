@@ -18,19 +18,37 @@
     return [[self alloc] init];
 }
 
--(void)parsWithData:(NSData *)data {
-    NSError *error = nil;
-    HTMLParser *parser = [[HTMLParser alloc] initWithData:data error:&error];
-    
-    if (error) {
-        NSLog(@"Error: %@", error);
-//        return @"error";
-    }
-    
-    self.bodyNode = [parser body];
++(id)parserWithData:(NSData *)data{
+    return [[self alloc] initWithData:data];
 }
 
-+(NSString*)parserWithdata {
+-(id)init {
+    self = [super init];
+    if (self) {
+        self.bodyNode = NULL;
+    }
+    return self;
+}
+
+-(id)initWithData:(NSData *)data {
+    self = [super init];
+    if (self) {
+        NSError *error = nil;
+        HTMLParser *parser = [[HTMLParser alloc] initWithData:data error:&error];
+        
+        if (error) {
+            NSLog(@"Error: %@", error);
+            //        return @"error";
+        }
+        
+        self.bodyNode = [parser body];
+    }
+    return self;
+}
+
+-(NSString*)parsing {
+    NSString *string = NULL;
+    
     NSArray *inputNodes = [self.bodyNode findChildTags:@"input"];
 //    NSArray *inputNodes = [
     
@@ -41,14 +59,14 @@
         }
     }
     
-    NSArray *spanNodes = [bodyNode findChildTags:@"span"];
+    NSArray *spanNodes = [self.bodyNode findChildTags:@"span"];
     
     for (HTMLNode *spanNode in spanNodes) {
         if ([[spanNode getAttributeNamed:@"class"] isEqualToString:@"spantext"]) {
             NSLog(@"from MSHParser %@", [spanNode rawContents]); //Answer to second question
         }
     }
-    NSString *string = @"fine";
+    string = @"fine";
     
     return string;
 }
