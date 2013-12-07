@@ -10,29 +10,34 @@
 
 @implementation MSHParser
 
--(NSString*)parser:(NSData *)data {
+//-(id)initWithData:(NSData *)data{
+//    return [[self alloc] initWithData:data];
+//}
+
++(id)parser{
+    return [[self alloc] init];
+}
+
+-(void)parsWithData:(NSData *)data {
     NSError *error = nil;
-    NSString *html =
-    @"<ul>"
-    "<li><input type='image' name='input1' value='string1value' /></li>"
-    "<li><input type='image' name='input2' value='string2value' /></li>"
-    "</ul>"
-    "<span class='spantext'><b>Hello World 1</b></span>"
-    "<span class='spantext'><b>Hello World 2</b></span>";
-    HTMLParser *parser = [[HTMLParser alloc] initWithString:html error:&error];
+    HTMLParser *parser = [[HTMLParser alloc] initWithData:data error:&error];
     
     if (error) {
         NSLog(@"Error: %@", error);
-                return @"error";
+//        return @"error";
     }
     
-    HTMLNode *bodyNode = [parser body];
+    self.bodyNode = [parser body];
+}
+
++(NSString*)parserWithdata {
+    NSArray *inputNodes = [self.bodyNode findChildTags:@"input"];
+//    NSArray *inputNodes = [
     
-    NSArray *inputNodes = [bodyNode findChildTags:@"input"];
-    
+
     for (HTMLNode *inputNode in inputNodes) {
         if ([[inputNode getAttributeNamed:@"name"] isEqualToString:@"input2"]) {
-            NSLog(@"%@", [inputNode getAttributeNamed:@"value"]); //Answer to first question
+            NSLog(@"from MSHParser %@", [inputNode getAttributeNamed:@"value"]); //Answer to first question
         }
     }
     
@@ -40,10 +45,10 @@
     
     for (HTMLNode *spanNode in spanNodes) {
         if ([[spanNode getAttributeNamed:@"class"] isEqualToString:@"spantext"]) {
-            NSLog(@"%@", [spanNode rawContents]); //Answer to second question
+            NSLog(@"from MSHParser %@", [spanNode rawContents]); //Answer to second question
         }
     }
-    NSString *sting = [NSString stringWithString:<#(NSString *)#>]
+    NSString *string = @"fine";
     
     return string;
 }

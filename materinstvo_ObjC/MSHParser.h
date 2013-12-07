@@ -12,6 +12,13 @@
 
 @interface MSHParser : NSObject
 
--(NSString*)parser:(NSData*)data;
+@property HTMLNode *bodyNode;
+
+//-(id)initWithData:(NSData*)data;
++(id)parser;
+
++(NSString*)parserWithdata;
+
+-(void)parsWithData:(NSData*)data;
 
 @end

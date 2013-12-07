@@ -7,18 +7,32 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "HTMLNode.h"
-#import "HTMLParser.h"
-
+#import "MSHParser.h"
 
 int main(int argc, char *argv[])
 {
 //    NSLog(@"ping");
     
+//    NSString *html =
+//    @"<ul>"
+//    "<li><input type='image' name='input1' value='string1value' /></li>"
+//    "<li><input type='image' name='input2' value='string2value' /></li>"
+//    "</ul>"
+//    "<span class='spantext'><b>Hello World 1</b></span>"
+//    "<span class='spantext'><b>Hello World 2</b></span>";
+//    
+//    NSData *data = [html dataUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [NSURL URLWithString:@"http://materinstvo-shop.ru"];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    MSHParser *parser = [MSHParser parser];
+
+    
+    NSLog([MSHParser parserWithdata:data]);
+
     
     
-//    NSURL *url = [NSURL URLWithString:@"http://materinstvo-shop.ru"];
-//    NSData *data = [NSData dataWithContentsOfURL:url];
+    NSURL *url = [NSURL URLWithString:@"http://materinstvo-shop.ru"];
+    NSData *data = [NSData dataWithContentsOfURL:url];
 //    NSString *ret = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 //    NSLog(@"ret = %@", ret);
         
