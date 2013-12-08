@@ -27,11 +27,16 @@ int main(int argc, char *argv[])
     MSHParser *parser = [MSHParser parserWithData:data];
 
     
-    NSString *string = @"fine";
+    NSString *stringFine = @"fine";
+    
     
     [parser parsing];
     
-    NSLog(@"%@", string);
+    NSLog(@"%@", stringFine);
+
+    
+//    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//    NSLog(@"%@", string);
 
     
     

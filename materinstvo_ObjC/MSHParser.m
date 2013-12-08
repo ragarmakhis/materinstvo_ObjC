@@ -10,6 +10,8 @@
 
 @implementation MSHParser
 
+@synthesize bodyNode;
+
 //-(id)initWithData:(NSData *)data{
 //    return [[self alloc] initWithData:data];
 //}
@@ -46,29 +48,34 @@
     return self;
 }
 
--(NSString*)parsing {
+-(void)parsing {
+    
+//    NSLog(@"from MSHParser %@", [self.bodyNode contents]);
+
     NSString *string = NULL;
     
-    NSArray *inputNodes = [self.bodyNode findChildTags:@"input"];
-//    NSArray *inputNodes = [
+//    NSArray *inputNodes = [self.bodyNode findChildTags:@"input"];
+//
+//    for (HTMLNode *inputNode in inputNodes) {
+//        if ([[inputNode getAttributeNamed:@"name"] isEqualToString:@"input2"]) {
+//            NSLog(@"from MSHParser %@", [inputNode getAttributeNamed:@"value"]); //Answer to first question
+//        }
+//    }
     
-
-    for (HTMLNode *inputNode in inputNodes) {
-        if ([[inputNode getAttributeNamed:@"name"] isEqualToString:@"input2"]) {
-            NSLog(@"from MSHParser %@", [inputNode getAttributeNamed:@"value"]); //Answer to first question
+//    HTMLNode *node = [self.bodyNode findChildOfClass:@"news"];
+//    NSLog(@"from MSHParser %@", [node rawContents]);
+    
+    
+    NSArray *divNodes = [self.bodyNode findChildTags:@"div"];
+    
+    for (HTMLNode *divNode in divNodes) {
+        if ([[divNode getAttributeNamed:@"class"] isEqualToString:@"news_body"]) {
+            NSLog(@"from MSHParser %@", [divNode rawContents]); //Answer to second question
         }
     }
+    string = @"fine from MSHParser";
+    NSLog(@"%@", string);
     
-    NSArray *spanNodes = [self.bodyNode findChildTags:@"span"];
-    
-    for (HTMLNode *spanNode in spanNodes) {
-        if ([[spanNode getAttributeNamed:@"class"] isEqualToString:@"spantext"]) {
-            NSLog(@"from MSHParser %@", [spanNode rawContents]); //Answer to second question
-        }
-    }
-    string = @"fine";
-    
-    return string;
 }
 
 @end

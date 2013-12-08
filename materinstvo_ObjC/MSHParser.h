@@ -18,7 +18,7 @@
 
 +(id)parserWithData:(NSData*)data;
 
--(NSString*)parsing;
+-(void)parsing;
 
 -(id)init;
 
