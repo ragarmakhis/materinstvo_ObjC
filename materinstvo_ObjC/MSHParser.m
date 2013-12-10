@@ -10,7 +10,7 @@
 
 @implementation MSHParser
 
-@synthesize bodyNode;
+//@synthesize bodyNode;
 
 //-(id)initWithData:(NSData *)data{
 //    return [[self alloc] initWithData:data];
@@ -28,6 +28,7 @@
     self = [super init];
     if (self) {
         self.bodyNode = NULL;
+        self.parser = NULL;
     }
     return self;
 }
@@ -36,14 +37,14 @@
     self = [super init];
     if (self) {
         NSError *error = nil;
-        HTMLParser *parser = [[HTMLParser alloc] initWithData:data error:&error];
+        self.parser = [[HTMLParser alloc] initWithData:data error:&error];
         
         if (error) {
             NSLog(@"Error: %@", error);
             //        return @"error";
         }
         
-        self.bodyNode = [parser body];
+        self.bodyNode = [self.parser body];
     }
     return self;
 }
@@ -69,7 +70,7 @@
     NSArray *divNodes = [self.bodyNode findChildTags:@"div"];
     
     for (HTMLNode *divNode in divNodes) {
-        if ([[divNode getAttributeNamed:@"class"] isEqualToString:@"news_body"]) {
+        if ([[divNode getAttributeNamed:@"class"] isEqualToString:@"news_date_inner"]) {
             NSLog(@"from MSHParser %@", [divNode rawContents]); //Answer to second question
         }
     }

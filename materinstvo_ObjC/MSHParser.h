@@ -13,6 +13,7 @@
 @interface MSHParser : NSObject
 
 @property HTMLNode *bodyNode;
+@property HTMLParser *parser;
 
 +(id)parser;
 
